@@ -12,6 +12,21 @@ public class BinocularsEffect : PostProcessEffectRenderer<Binoculars>
 
         context.command.BlitFullscreenTriangle(context.source, context.destination, sheet, 0);
     }
+    
+        private void Update()
+        {
+            float y = Input.mouseScrollDelta.y;
+
+            currentFOV -= y;
+            currentFOV = Mathf.Clamp(currentFOV, -54, baseFOV);
+
+            Game.instance.playerScript.PlayerWeaponsComponent.IronsightsComponent.fovMod = currentFOV;
+
+            if(Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(Game.instance.settings.controls.inventory))
+            {
+                Destroy(this);
+            }
+        }
 }
 
 [System.Serializable]
