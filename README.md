@@ -28,3 +28,6 @@ The `Binoculars` script is designed to be easily modifiable. Here are some possi
 The `Binoculars` script was written by Robert Rumney and is released under the MIT License. 
 
 The `PointOfInterestMarker` script was adapted from a script provided by Unity Technologies and is also released under the MIT License.
+
+## Example
+For a demonstration of the binoculars effect in action, visit [this YouTube video](https://www.youtube.com/watch?v=ipj4iGDMAmM).
