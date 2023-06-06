@@ -37,28 +37,28 @@ public class Binoculars : MonoBehaviour
 
             if (enemyRoot != null)
             {
-                StateController stateController = enemyRoot.gameObject.GetComponent<StateController>();
+                EnemyAI enemy = enemyRoot.gameObject.GetComponent<EnemyAI>();
 
-                if (stateController != null)
+                if (enemy != null)
                 {
-                    AddEnemyToList(stateController);
+                    AddEnemyToList(enemy);
                 }
             }
         }
     }
 
-    private void AddEnemyToList(StateController stateController)
+    private void AddEnemyToList(EnemyAI enemy)
     {
-        if (!detectedEnemies.Contains(stateController.gameObject))
+        if (!detectedEnemies.Contains(enemy.gameObject))
         {
-            detectedEnemies.Add(stateController.gameObject);
+            detectedEnemies.Add(enemy.gameObject);
 
-            if (stateController.binocularTag == null)
+            if (enemy.binocularTag == null)
             {
                 GameObject newWaypoint = Instantiate((GameObject)Resources.Load("Waypoint"));
                 PointOfInterestMarker poim = newWaypoint.GetComponent<PointOfInterestMarker>();
 
-                poim.TargetMarker = stateController.enemyAnimation.anim.GetBoneTransform(HumanBodyBones.Spine);
+                poim.TargetMarker = enemy.enemyAnimation.anim.GetBoneTransform(HumanBodyBones.Spine);
                 poim.PlayerPosition = Game.instance.player.transform;
 
                 poim.transform.parent = waypointCanvas.transform;
@@ -66,7 +66,7 @@ public class Binoculars : MonoBehaviour
 
                 newWaypoint.SetActive(true);
 
-                stateController.binocularTag = newWaypoint;
+                enemy.binocularTag = newWaypoint;
 
                 Game.instance.Click();
             }
